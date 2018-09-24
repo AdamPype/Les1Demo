@@ -350,6 +350,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1135860478}
+  - component: {fileID: 1135860480}
   - component: {fileID: 1135860479}
   m_Layer: 0
   m_Name: Player
@@ -372,7 +373,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1135860479
+--- !u!143 &1135860479
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1135860477}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1135860480
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -394,6 +412,8 @@ GameObject:
   - component: {fileID: 1250350956}
   - component: {fileID: 1250350955}
   - component: {fileID: 1250350954}
+  - component: {fileID: 1250350959}
+  - component: {fileID: 1250350958}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -470,6 +490,34 @@ Transform:
   m_Father: {fileID: 2091811615}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1250350958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1250350953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f012d8628a05c9c4ea041c9de18b2efd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!143 &1250350959
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1250350953}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2.220446e-16
+  m_Radius: 5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2091811614
 GameObject:
   m_ObjectHideFlags: 0

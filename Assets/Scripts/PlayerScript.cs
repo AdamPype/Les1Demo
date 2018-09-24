@@ -1,16 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
+//[RequireComponent(typeof(CharacterController))]
 public class PlayerScript : MonoBehaviour {
 
-	// Use this for initialization
+    private CharacterController _char;
+
 	void Start () {
-		
-	}
-    
-	// Update is called once per frame
-	void Update () {
+        _char = GetComponent<CharacterController>();
+
+#if DEBUG
+
+        Assert.IsNotNull(_char, "DEPENDENCY ERROR: CharacterController missing from PlayerScript");
+
+#endif
+
+        }
+
+    void Update () {
 	    
 	}
 }
