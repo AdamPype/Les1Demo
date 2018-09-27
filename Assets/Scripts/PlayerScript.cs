@@ -7,19 +7,24 @@ using UnityEngine.Assertions;
 //[RequireComponent(typeof(CharacterController))]
 public class PlayerScript : MonoBehaviour {
 
-    private Transform _absoluteTransform;
+    
+    [SerializeField] private float _acceleration;
+    [SerializeField] private float _drag;
 
-    private CharacterController _char;
     private Vector3 _velocity = Vector3.zero; // [m/s]
+    private Vector3 _inputMovement;
+
+    private Transform _absoluteTransform;
+    private CharacterController _char;
     private MeshRenderer _rend;
-    private float _speed;
-    Vector3 _inputMovement;
+
 
     void Start ()
         {
         //attach components
         _char = GetComponent<CharacterController>();
         _rend = transform.GetChild(0).GetComponent<MeshRenderer>();
+        _absoluteTransform = Camera.main.transform;
 
         //dependency error
         #if DEBUG
@@ -33,18 +38,39 @@ public class PlayerScript : MonoBehaviour {
         ApplyGround();
         ApplyGravity();
         ApplyMovement();
+        ApplyDragOnGround();
 
         DoMovement();
         }
 
+    private void Update()
+        {
+        _inputMovement = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));  //.normalized;
+        }
 
     private void ApplyMovement()
         {
-        //apply movement input
-        _inputMovement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Horizontal"));
-        _inputMovement *= _speed * Time.deltaTime;
-        
-        _velocity += _inputMovement;
+        if (_char.isGrounded)
+            {
+            //get relative rotation from camera
+            Vector3 xzForward = Vector3.Scale(_absoluteTransform.forward, new Vector3(1, 0, 1));
+            Quaternion relativeRot = Quaternion.LookRotation(xzForward);
+
+            //move in relative direction
+            Vector3 relativeMov = relativeRot * _inputMovement;
+            _velocity += relativeMov * _acceleration * Time.deltaTime;
+
+            }
+
+        }
+
+    private void ApplyDragOnGround()
+        {
+        if (_char.isGrounded)
+            {
+            //drag
+            _velocity = _velocity * (1 - _drag * Time.deltaTime); //same as lerp
+            }
         }
 
     private void DoMovement()
