@@ -117,7 +117,10 @@ public class DoubleJumpPlayerScript : MonoBehaviour {
         {
         if ((_char.isGrounded || _jumps <= 1) && _jump)
             {
-            _velocity.y += Mathf.Sqrt(2 * Physics.gravity.magnitude * _jumpHeight);
+            if (_jumps == 0)
+                _velocity.y += Mathf.Sqrt(2 * Physics.gravity.magnitude * _jumpHeight);
+            else
+                _velocity.y = Mathf.Sqrt(2 * Physics.gravity.magnitude * 1);
             _jump = false;
             _jumps++;
             }
