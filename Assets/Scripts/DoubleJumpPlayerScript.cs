@@ -12,6 +12,7 @@ public class DoubleJumpPlayerScript : MonoBehaviour {
     [SerializeField] private float _drag;
     [SerializeField] private float _maximumXZVelocity = (30 * 1000) / (60 * 60); //[m/s] 30km/h
     [SerializeField] private float _jumpHeight;
+    [SerializeField] private float _doubleJumpHeight = 1;
 
     private Vector3 _velocity = Vector3.zero; // [m/s]
     private Vector3 _inputMovement;
@@ -120,7 +121,7 @@ public class DoubleJumpPlayerScript : MonoBehaviour {
             if (_jumps == 0)
                 _velocity.y += Mathf.Sqrt(2 * Physics.gravity.magnitude * _jumpHeight);
             else
-                _velocity.y = Mathf.Sqrt(2 * Physics.gravity.magnitude * 1);
+                _velocity.y = Mathf.Sqrt(2 * Physics.gravity.magnitude * _doubleJumpHeight);
             _jump = false;
             _jumps++;
             }
